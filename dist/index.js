@@ -8,12 +8,16 @@ const skills_route_1 = __importDefault(require("./routes/skills/skills.route"));
 const user_routes_1 = __importDefault(require("./routes/users/user.routes"));
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const allowedOrigins = ['http://localhost:3000', 'https://bejewelled-khapse-aea2f6.netlify.app'];
+const allowedOrigins = [
+    'http://localhost:3000',
+    'https://bejewelled-khapse-aea2f6.netlify.app',
+    'https://remote-front-akashs-projects-db31b022.vercel.app'
+];
 const express = require('express');
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: '*', credentials: true }));
-app.options('*', cors({ origin: '*', credentials: true }));
+app.use(cors({ origin: allowedOrigins, credentials: true }));
+app.options('*', cors({ origin: allowedOrigins, credentials: true }));
 require('dotenv').config();
 app.use(cookieParser());
 app.use('/users', user_routes_1.default);
