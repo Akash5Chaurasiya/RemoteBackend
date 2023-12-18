@@ -11,11 +11,8 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 app.use(express.json());
-app.use(cors({
-    'allowedHeaders': ['Content-Type'],
-    'origin': '*',
-    'preflightContinue': true
-}));
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.options('*', cors({ origin: 'http://localhost:3000', credentials: true }));
 require('dotenv').config();
 app.use(cookieParser());
 app.use('/users', user_routes_1.default);
